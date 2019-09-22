@@ -52,7 +52,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run build",
-      "post-commit": "npm prune --production && git add node_modules/* bin/* && git commit -m \"chore(husky): add correct node modules\"",
       "pre-push": "npm test"
     }
   }
