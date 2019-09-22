@@ -1,0 +1,57 @@
+{
+  "name": "pr-linter-action",
+  "version": "0.1.0",
+  "description": "A GitHub Action to apply commitlint onto GitHub PRs",
+  "main": "bin/main.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "standard --verbose src/**/*.ts | snazzy",
+    "format-fix": "standard --fix src/**/*.ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rigma/pr-linter-action.git"
+  },
+  "keywords": [
+    "github",
+    "actions"
+  ],
+  "author": "rigma <rigbuntu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rigma/pr-linter-action/issues"
+  },
+  "homepage": "https://github.com/rigma/pr-linter-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/github": "^1.1.0",
+    "js-yaml": "^3.13.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
+  },
+  "standard": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format-fix && npm run build",
+      "post-commit": "npmm prune --production && git add node_modules/* bin/* && git commit -m \"chore(husky): add correct node modules\"",
+      "pre-push": "npm test"
+    }
+  }
+}

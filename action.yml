@@ -1,0 +1,9 @@
+name: Pull Request linter
+description:
+author: rigma
+inputs:
+  repo-token:
+    description: The GITHUB_TOKEN secret to use for this action
+runs:
+  using: node12
+  main: bin/main.js
